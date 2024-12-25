@@ -3,85 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlockSity Chatbot</title>
+    <title>Chatbot Example</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
-            background-size: 400% 400%;
-            animation: gradientShift 10s infinite;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        /* Stiluri pentru butonul de chat */
+        #chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
             color: white;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .navbar {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        .navbar a {
-            text-decoration: none;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .navbar a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: yellow;
-        }
-
-        #chatbot-container {
-            width: 80%;
-            height: 70%;
-            background-color: rgba(0, 0, 0, 0.5);
+        /* Stiluri pentru fereastra de chat */
+        #chatbot-window {
+            display: none;
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: #fff;
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        }
+
+        #chatbot-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #chatbot-body {
+            padding: 10px;
+            height: 90%;
+            overflow-y: auto;
+        }
+
+        #chatbot-footer {
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-top: 1px solid #ddd;
         }
     </style>
-    <script type="text/javascript">
-        window.roboassistAdmin = true;
-        (function(w, r) {
-            w._rwq = r;
-            w[r] = w[r] || function() {
-                (w[r].q = w[r].q || []).push(arguments)
-            }
-        })(window, 'rewardful');
-    </script>
-    <script async src="https://r.wdfl.co/rw.js" data-rewardful="f93535"></script>
-    <script defer="defer" src="/vendors.7c07a7d786ac62d2b54e.js"></script>
-    <script defer="defer" src="/main.a53b170a0c89c3eb54e9.js"></script>
-    <link href="/main.131781972f109bcae0c6.css" rel="stylesheet">
 </head>
 <body>
-    <div class="navbar">
-        <a href="/home">BlockSity</a>
+
+<!-- Butonul pentru a deschide chatbotul -->
+<button id="chatbot-button" onclick="toggleChatbot()">Chat with us</button>
+
+<!-- Fereastra de chat -->
+<div id="chatbot-window">
+    <div id="chatbot-header">Chatbot</div>
+    <div id="chatbot-body">
+        <p>Hi! How can I assist you today?</p>
     </div>
-    <div id="chatbot-container">
-        <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root"></div>
+    <div id="chatbot-footer">
+        <input type="text" id="chat-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
     </div>
-    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="45f2ee676c8ed30f9c575a4f-|49" defer></script>
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8f7754a59fc2b688","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2024.10.5","token":"aa7845a1df3e44e39966b4c780ca00cb"}' crossorigin="anonymous"></script>
+</div>
+
+<script>
+    // Functia pentru a afisa/ascunde fereastra de chat
+    function toggleChatbot() {
+        var chatbotWindow = document.getElementById('chatbot-window');
+        if (chatbotWindow.style.display === "none" || chatbotWindow.style.display === "") {
+            chatbotWindow.style.display = "block";
+        } else {
+            chatbotWindow.style.display = "none";
+        }
+    }
+
+    // Functia pentru a trimite mesajul din input
+    function sendMessage() {
+        var message = document.getElementById('chat-input').value;
+        var chatbotBody = document.getElementById('chatbot-body');
+        if (message.trim() !== "") {
+            var userMessage = document.createElement('p');
+            userMessage.textContent = "You: " + message;
+            chatbotBody.appendChild(userMessage);
+            document.getElementById('chat-input').value = '';
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+            
+            // Răspuns automat al chatbot-ului
+            var botResponse = document.createElement('p');
+            botResponse.textContent = "Bot: I'm here to help!";
+            chatbotBody.appendChild(botResponse);
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        }
+    }
+</script>
+
 </body>
 </html>
