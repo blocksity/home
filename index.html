@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlockSity</title>
+    <title>BlockSity Chatbot</title>
     <style>
         body {
             margin: 0;
@@ -14,6 +14,11 @@
             animation: gradientShift 10s infinite;
             height: 100vh;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
         }
 
         @keyframes gradientShift {
@@ -42,11 +47,41 @@
             background-color: rgba(255, 255, 255, 0.2);
             color: yellow;
         }
+
+        #chatbot-container {
+            width: 80%;
+            height: 70%;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
+    <script type="text/javascript">
+        window.roboassistAdmin = true;
+        (function(w, r) {
+            w._rwq = r;
+            w[r] = w[r] || function() {
+                (w[r].q = w[r].q || []).push(arguments)
+            }
+        })(window, 'rewardful');
+    </script>
+    <script async src="https://r.wdfl.co/rw.js" data-rewardful="f93535"></script>
+    <script defer="defer" src="/vendors.7c07a7d786ac62d2b54e.js"></script>
+    <script defer="defer" src="/main.a53b170a0c89c3eb54e9.js"></script>
+    <link href="/main.131781972f109bcae0c6.css" rel="stylesheet">
 </head>
 <body>
     <div class="navbar">
         <a href="/home">BlockSity</a>
     </div>
+    <div id="chatbot-container">
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
+    </div>
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="45f2ee676c8ed30f9c575a4f-|49" defer></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"8f7754a59fc2b688","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2024.10.5","token":"aa7845a1df3e44e39966b4c780ca00cb"}' crossorigin="anonymous"></script>
 </body>
 </html>
